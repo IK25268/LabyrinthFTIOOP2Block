@@ -7,7 +7,7 @@
 #include <array>
 #include "Labyrinth.hpp"
 
-class WaveAlg {
+class WaveAlg final {
 
 private:
 	Labyrinth& labyrinth;

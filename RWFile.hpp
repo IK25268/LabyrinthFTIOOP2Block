@@ -5,7 +5,7 @@
 #include <map>
 #include <queue>
 #include "Labyrinth.hpp"
-class RWFile
+class RWFile final
 {
 public:
 	RWFile();

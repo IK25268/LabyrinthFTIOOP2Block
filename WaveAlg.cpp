@@ -15,8 +15,8 @@ void WaveAlg::CalcLabyrinth()
 
 void WaveAlg::CalcWave()
 {
-	labyrinth.cells[labyrinth.hero].first = 0;
-	waveCells.push(labyrinth.hero);
+	labyrinth.GetCells()[labyrinth.GetHero()].first = 0;
+	waveCells.push(labyrinth.GetHero());
 	while (waveCells.size() != 0)
 	{
 		CalcCell();
@@ -30,12 +30,12 @@ void WaveAlg::CalcCell()
 	{
 		for (int x = -1; x < 2; x++)
 		{
-			unsigned int nextCell = (cell + y * (labyrinth.cols)) + x;
-			if ((labyrinth.cells[nextCell].first == -1) && (labyrinth.cells[nextCell].second != '1') && (!((y == 0) && (x == 0))))
+			unsigned int nextCell = (cell + y * (labyrinth.GetCols())) + x;
+			if ((labyrinth.GetCells()[nextCell].first == -1) && (labyrinth.GetCells()[nextCell].second != '1') && (!((y == 0) && (x == 0))))
 			{
-				labyrinth.cells[nextCell].first = labyrinth.cells[cell].first + 1;
+				labyrinth.GetCells()[nextCell].first = labyrinth.GetCells()[cell].first + 1;
 				waveCells.push(nextCell);
-				if (labyrinth.cells[nextCell].second == '3')
+				if (labyrinth.GetCells()[nextCell].second == '3')
 				{
 					while (waveCells.size() != 0)
 					{
@@ -50,19 +50,19 @@ void WaveAlg::CalcCell()
 
 void WaveAlg::DrawRoute()
 {
-	unsigned int cell = labyrinth.exit;
-	int level = labyrinth.cells[cell].first;
+	unsigned int cell = labyrinth.GetExit();
+	int level = labyrinth.GetCells()[cell].first;
 	while (level > 0)
 	{
 		char iter = 0;
 		unsigned int nextCell = 0;
-		for (iter = 0; level == labyrinth.cells[cell].first; iter++)
+		for (iter = 0; level == labyrinth.GetCells()[cell].first; iter++)
 		{
-			nextCell = ((cell + j[iter] * (labyrinth.cols)) + i[iter]);
-			if (labyrinth.cells[nextCell].first == (level - 1))
+			nextCell = ((cell + j[iter] * (labyrinth.GetCols())) + i[iter]);
+			if (labyrinth.GetCells()[nextCell].first == (level - 1))
 			{
 				level--;
-				if (labyrinth.cells[cell].second == '0') labyrinth.cells[cell].second = '*';
+				if (labyrinth.GetCells()[cell].second == '0') labyrinth.GetCells()[cell].second = '*';
 			}
 		}
 		cell = nextCell;
@@ -71,5 +71,5 @@ void WaveAlg::DrawRoute()
 
 int WaveAlg::CalcPos(unsigned int x, unsigned int y)
 {
-	return y * labyrinth.cols + x;
+	return y * labyrinth.GetCols() + x;
 }

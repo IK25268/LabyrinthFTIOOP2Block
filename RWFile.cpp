@@ -9,57 +9,50 @@ RWFile::~RWFile(){}
 
 void RWFile::WriteFile(Labyrinth labyrinth, const char* outputName)
 {
-	FILE* outputFile = NULL;
-	fopen_s(&outputFile, "output.txt", "w");
-	if (outputFile != NULL)
+	std::ofstream out;         
+	out.open(outputName);      
+	if (out.is_open())
 	{
-		unsigned int size = labyrinth.cols * labyrinth.rows;
-		std::map<unsigned int, std::pair<int, char>>::iterator iter = labyrinth.cells.begin();
-		for (iter; iter != labyrinth.cells.end(); iter++)
+		char digit = 0;
+		for (size_t j = 0; j < labyrinth.GetRows(); j++)
 		{
-			fwrite(&(iter->second.second), sizeof(char), 1, outputFile);
-			if ((iter->first + 1) % labyrinth.cols == 0)
+			for (size_t i = 0; i < labyrinth.GetCols(); i++)
 			{
-				if ((iter->first + 1) != size)
-				{
-					fputc('\n', outputFile);
-				}
+				out << labyrinth.GetCells()[j* labyrinth.GetCols()+i].second;
+				if (i < (labyrinth.GetCols()-1)) out << ' ';
 			}
-			else
-			{
-				fputc(' ', outputFile);
-			}
+			if (j < (labyrinth.GetRows() - 1)) out << std::endl;
 		}
 	}
-	if (outputFile != NULL)fclose(outputFile);
+	out.close();
 }
 
 Labyrinth RWFile::ReadFile(const char* inputName)
 {
 	Labyrinth labyrinth;
 	std::string line;
-	std::ifstream in(inputName); // окрываем файл для чтения
+	std::ifstream in(inputName); 
 	if (in.is_open())
 	{
 		unsigned int pos = 0;
 		std::getline(in, line);
-		labyrinth.cols = (line.size() + 1) / 2;
-		for (int i = 0; i < labyrinth.cols; i++)
+		labyrinth.GetCols() = (line.size() + 1) / 2;
+		for (int i = 0; i < labyrinth.GetCols(); i++)
 		{
-			labyrinth.cells.insert({ pos, {0, (char)line[2 * i]} });
+			labyrinth.GetCells().insert({ pos, {0, (char)line[2 * i]} });
 			pos++;
 		}
-		labyrinth.rows++;
+		labyrinth.GetRows()++;
 		while (std::getline(in, line))
 		{
-			for (int i = 0; i < labyrinth.cols; i++)
+			for (int i = 0; i < labyrinth.GetCols(); i++)
 			{
-				if ((char)line[2 * i] == '2') labyrinth.hero = pos;
-				if ((char)line[2 * i] == '3') labyrinth.exit = pos;
-				labyrinth.cells.insert({ pos, {-1, (char)line[2 * i]} });
+				if ((char)line[2 * i] == '2') labyrinth.GetHero() = pos;
+				if ((char)line[2 * i] == '3') labyrinth.GetExit() = pos;
+				labyrinth.GetCells().insert({ pos, {-1, (char)line[2 * i]} });
 				pos++;
 			}
-			labyrinth.rows++;
+			labyrinth.GetRows()++;
 		}
 	}
 	in.close();
