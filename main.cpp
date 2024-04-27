@@ -1,15 +1,15 @@
 #include <iostream>
 #include "WaveAlg.hpp"
-using namespace std;
+#include "Labyrinth.hpp"
+#include "RWFile.hpp"
 
 int main()
 {
-	Labyrinth labyrinth("input.txt");
-	labyrinth.ReadFile();
-	labyrinth.CalcWave();
-	labyrinth.DrawRoute();
+	RWFile rwFile;
+	Labyrinth labyrinth(rwFile.ReadFile("input.txt"));
+	WaveAlg waveAlg(labyrinth);
+	waveAlg.CalcLabyrinth();
 	labyrinth.PrintCells();
-	labyrinth.PrintCellsLevel();
-	labyrinth.WriteFile();
+	rwFile.WriteFile(labyrinth, "output.txt");
 	return 0;
 }

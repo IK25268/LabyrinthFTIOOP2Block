@@ -1,32 +1,26 @@
+#pragma once
 #ifndef __WaveAlg_hpp
 #define __WaveAlg_hpp
 #include <string>
 #include <map>
 #include <queue>
+#include <array>
+#include "Labyrinth.hpp"
 
-class Labyrinth {
+class WaveAlg {
 
 private:
-	const char* inputFile;
-	std::map<unsigned int, std::pair<int, char>> cells;
+	Labyrinth& labyrinth;
 	std::queue<unsigned int> waveCells;
-	unsigned int cols;
-	unsigned int rows;
-	unsigned int hero;
-	unsigned int exit;
-	void PrintMapType();
-	void PrintMapLevel();
+	std::array<int, 8> i = { -1, 0, 0, 1, -1, -1, 1, 1 };
+	std::array<int, 8> j = { 0, -1, 1, 0, -1, 1, -1, 1 };
 public:
-	Labyrinth();
-	Labyrinth(const char* _inputFile);
-	~Labyrinth();
+	WaveAlg(Labyrinth& _labyrinth);
+	~WaveAlg();
+	void CalcLabyrinth();
 	void CalcWave();
 	void CalcCell();
 	void DrawRoute();
-	void PrintCells();
-	void PrintCellsLevel();
-	void WriteFile();
-	void ReadFile();
 	int CalcPos(unsigned int x, unsigned int y);
 };
 
