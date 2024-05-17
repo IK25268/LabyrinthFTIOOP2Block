@@ -5,11 +5,9 @@
 
 int main()
 {
-	RWFile rwFile;
-	Labyrinth labyrinth(rwFile.ReadFile("input.txt"));
-	WaveAlg waveAlg(labyrinth);
-	waveAlg.CalcLabyrinth();
-	labyrinth.PrintCells();
-	rwFile.WriteFile(labyrinth, "output.txt");
+	//Labyrinth labyrinth(RWFile::ReadFile("input.txt"));
+	//WaveAlg waveAlg;
+	//waveAlg.CalcLabyrinth(labyrinth);
+	//RWFile::WriteFile(labyrinth, "output.txt");
 	return 0;
 }

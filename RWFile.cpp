@@ -3,10 +3,6 @@
 #include <fstream>
 #include "RWFile.hpp"
 
-RWFile::RWFile(){}
-
-RWFile::~RWFile(){}
-
 void RWFile::WriteFile(Labyrinth labyrinth, const char* outputName)
 {
 	std::ofstream out;         

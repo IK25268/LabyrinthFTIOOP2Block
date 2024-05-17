@@ -8,10 +8,8 @@
 class RWFile final
 {
 public:
-	RWFile();
-	~RWFile();
-	void WriteFile(Labyrinth labyrinth, const char* outputName);
-	Labyrinth ReadFile(const char* inputName);
+	static void WriteFile(Labyrinth labyrinth, const char* outputName);
+	static Labyrinth ReadFile(const char* inputName);
 };
 
 #endif
