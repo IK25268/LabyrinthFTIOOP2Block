@@ -14,7 +14,7 @@ void RWFile::WriteFile(Labyrinth labyrinth, const char* outputName)
 		{
 			for (size_t i = 0; i < labyrinth.GetCols(); i++)
 			{
-				out << labyrinth.GetCells()[j* labyrinth.GetCols()+i].second;
+				out << labyrinth.ReturnCells()[j* labyrinth.GetCols()+i].second;
 				if (i < (labyrinth.GetCols()-1)) out << ' ';
 			}
 			if (j < (labyrinth.GetRows() - 1)) out << std::endl;
@@ -32,23 +32,23 @@ Labyrinth RWFile::ReadFile(const char* inputName)
 	{
 		unsigned int pos = 0;
 		std::getline(in, line);
-		labyrinth.GetCols() = (line.size() + 1) / 2;
+		labyrinth.SetCols((line.size() + 1) / 2);
 		for (int i = 0; i < labyrinth.GetCols(); i++)
 		{
-			labyrinth.GetCells().insert({ pos, {0, (char)line[2 * i]} });
+			labyrinth.ReturnCells().insert({ pos, {0, (char)line[2 * i]} });
 			pos++;
 		}
-		labyrinth.GetRows()++;
+		labyrinth.SetRows(labyrinth.GetRows()+1);
 		while (std::getline(in, line))
 		{
 			for (int i = 0; i < labyrinth.GetCols(); i++)
 			{
-				if ((char)line[2 * i] == '2') labyrinth.GetHero() = pos;
-				if ((char)line[2 * i] == '3') labyrinth.GetExit() = pos;
-				labyrinth.GetCells().insert({ pos, {-1, (char)line[2 * i]} });
+				if ((char)line[2 * i] == '2') labyrinth.SetHero(pos);
+				if ((char)line[2 * i] == '3') labyrinth.SetExit(pos);
+				labyrinth.ReturnCells().insert({ pos, {-1, (char)line[2 * i]} });
 				pos++;
 			}
-			labyrinth.GetRows()++;
+			labyrinth.SetRows(labyrinth.GetRows() + 1);
 		}
 	}
 	in.close();

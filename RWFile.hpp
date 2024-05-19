@@ -2,8 +2,6 @@
 #ifndef __RWFile_hpp
 #define __RWFile_hpp
 #include <string>
-#include <map>
-#include <queue>
 #include "Labyrinth.hpp"
 class RWFile final
 {

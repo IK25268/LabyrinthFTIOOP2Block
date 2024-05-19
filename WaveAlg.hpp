@@ -1,8 +1,6 @@
 #pragma once
 #ifndef __WaveAlg_hpp
 #define __WaveAlg_hpp
-#include <string>
-#include <map>
 #include <queue>
 #include <array>
 #include "Labyrinth.hpp"
