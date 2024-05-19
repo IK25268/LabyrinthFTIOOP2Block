@@ -5,13 +5,13 @@
 
 class Labyrinth final {
 private:
-	std::map<unsigned int, std::pair<int, char>> cells;
-	unsigned int cols;
-	unsigned int rows;
-	unsigned int hero;
-	unsigned int exit;
+	std::map<unsigned int, std::pair<int, char>> cells = {};
+	unsigned int cols = 0;
+	unsigned int rows = 0;
+	unsigned int hero = 0;
+	unsigned int exit = 0;
 public:
-	Labyrinth() : cols(0), rows(0), hero(0), exit(0) {};
+	//Labyrinth() : cols(0), rows(0), hero(0), exit(0) {};
 	std::map<unsigned int, std::pair<int, char>>& ReturnCells();
 	unsigned int GetCols();
 	unsigned int GetRows();
