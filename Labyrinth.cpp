@@ -3,7 +3,7 @@
 #include <fstream>
 #include "Labyrinth.hpp"
 
-std::map<unsigned int, std::pair<int, char>>& Labyrinth::ReturnCells()
+std::map<unsigned int, std::pair<int, char>> Labyrinth::ReturnCells()
 {
 	return cells;
 }

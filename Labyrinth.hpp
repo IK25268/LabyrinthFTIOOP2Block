@@ -12,7 +12,7 @@ private:
 	unsigned int exit = 0;
 public:
 	//Labyrinth() : cols(0), rows(0), hero(0), exit(0) {};
-	std::map<unsigned int, std::pair<int, char>>& ReturnCells();
+	std::map<unsigned int, std::pair<int, char>> ReturnCells();
 	unsigned int GetCols();
 	unsigned int GetRows();
 	unsigned int GetHero();

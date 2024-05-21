@@ -3,10 +3,11 @@
 #include <fstream>
 #include "WaveAlg.hpp"
 
-void WaveAlg::CalcLabyrinth(Labyrinth& labyrinth)
+Labyrinth& WaveAlg::CalcLabyrinth(Labyrinth labyrinth)
 {
 	CalcWave(labyrinth);
 	DrawRoute(labyrinth);
+	return labyrinth;
 }
 
 void WaveAlg::CalcWave(Labyrinth& labyrinth)
