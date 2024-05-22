@@ -6,7 +6,7 @@
 #include "../LabyrinthFTIOOP2Block/WaveAlg.hpp"
 #include "../LabyrinthFTIOOP2Block/WaveAlg.cpp"
 
-TEST(Labyrinth, TestRead) {
+TEST(Labyrinth1, TestRead) {
 	std::array<char, 70> mapRead = 
 	{
 		'1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
@@ -22,13 +22,13 @@ TEST(Labyrinth, TestRead) {
 	ASSERT_EQ(7, labyrinth.GetRows());
 	ASSERT_EQ(11, labyrinth.GetHero());
 	ASSERT_EQ(39, labyrinth.GetExit());
-	for (int iter = 0; iter < labyrinth.GetCells().size(); iter++)
+	for (int iter = 0; iter < labyrinth.ReturnCells().size(); iter++)
 	{
-		ASSERT_EQ((int)mapRead[iter], (int)(labyrinth.GetCells()[iter].second));
+		ASSERT_EQ((int)mapRead[iter], (int)(labyrinth.ReturnCells()[iter].second));
 	}
 }
 
-TEST(Labyrinth, TestDraw) {
+TEST(Labyrinth1, TestDraw) {
 	std::array<const char, 70> mapCalc =
 	{
 		'1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
@@ -41,9 +41,9 @@ TEST(Labyrinth, TestDraw) {
 	};
 	Labyrinth labyrinth(RWFile::ReadFile("input.txt"));
 	WaveAlg waveAlg;
-	waveAlg.CalcLabyrinth(labyrinth);
-	for (int iter = 0; iter < labyrinth.GetCells().size(); iter++)
+	labyrinth = waveAlg.CalcLabyrinth(labyrinth);
+	for (int iter = 0; iter < labyrinth.ReturnCells().size(); iter++)
 	{
-		ASSERT_EQ((int)mapCalc[iter], (int)(labyrinth.GetCells()[iter].second));
+		ASSERT_EQ((int)mapCalc[iter], (int)(labyrinth.ReturnCells()[iter].second));
 	}
 }
