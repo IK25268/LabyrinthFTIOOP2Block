@@ -35,7 +35,8 @@ Labyrinth RWFile::ReadFile(const char* inputName)
 		labyrinth.SetCols((line.size() + 1) / 2);
 		for (int i = 0; i < labyrinth.GetCols(); i++)
 		{
-			labyrinth.ReturnCells().insert({ pos, {0, (char)line[2 * i]} });
+			//labyrinth.ReturnCells().insert({ pos, {0, (char)line[2 * i]} });
+			labyrinth.SetCell(pos, -1, (char)line[2 * i] );
 			pos++;
 		}
 		labyrinth.SetRows(labyrinth.GetRows()+1);
@@ -45,7 +46,8 @@ Labyrinth RWFile::ReadFile(const char* inputName)
 			{
 				if ((char)line[2 * i] == '2') labyrinth.SetHero(pos);
 				if ((char)line[2 * i] == '3') labyrinth.SetExit(pos);
-				labyrinth.ReturnCells().insert({ pos, {-1, (char)line[2 * i]} });
+				//labyrinth.ReturnCells().insert({ pos, {-1, (char)line[2 * i]} });
+				labyrinth.SetCell(pos, -1, (char)line[2 * i]);
 				pos++;
 			}
 			labyrinth.SetRows(labyrinth.GetRows() + 1);

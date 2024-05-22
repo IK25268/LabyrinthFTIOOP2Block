@@ -12,7 +12,8 @@ private:
 	unsigned int exit = 0;
 public:
 	//Labyrinth() : cols(0), rows(0), hero(0), exit(0) {};
-	std::map<unsigned int, std::pair<int, char>> ReturnCells();
+	std::map<unsigned int, std::pair<int, char>>& ReturnCells();
+	void SetCell(unsigned int pos, int level, char type);
 	unsigned int GetCols();
 	unsigned int GetRows();
 	unsigned int GetHero();

@@ -3,9 +3,14 @@
 #include <fstream>
 #include "Labyrinth.hpp"
 
-std::map<unsigned int, std::pair<int, char>> Labyrinth::ReturnCells()
+std::map<unsigned int, std::pair<int, char>>& Labyrinth::ReturnCells()
 {
 	return cells;
+}
+
+void Labyrinth::SetCell(unsigned int pos, int level, char type)
+{
+	cells[pos] = { level, type };
 }
 
 unsigned int Labyrinth::GetCols()

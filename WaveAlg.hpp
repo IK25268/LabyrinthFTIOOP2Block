@@ -16,7 +16,7 @@ private:
 	void DrawRoute(Labyrinth& labyrinth);
 	int CalcPos(Labyrinth& labyrinth, unsigned int x, unsigned int y);
 public:
-	Labyrinth& CalcLabyrinth(Labyrinth labyrinth);
+	Labyrinth CalcLabyrinth(Labyrinth labyrinth);
 };
 
 #endif
